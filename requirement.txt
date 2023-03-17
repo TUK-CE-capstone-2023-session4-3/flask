@@ -1,5 +1,4 @@
 addict==2.4.0
-alabaster @ file:///home/ktietz/src/ci/alabaster_1611921544520/work
 anaconda-client==1.11.0
 anaconda-navigator==2.3.1
 anaconda-project @ file:///private/var/folders/sy/f16zz6x50xz3113nwtb9bvq00000gp/T/abs_52iciqycjz/croots/recipe/anaconda-project_1660339902500/work
@@ -302,30 +301,3 @@ tomli @ file:///private/var/folders/sy/f16zz6x50xz3113nwtb9bvq00000gp/T/abs_9076
 tomlkit @ file:///private/var/folders/sy/f16zz6x50xz3113nwtb9bvq00000gp/T/abs_5fgtm9if1m/croots/recipe/tomlkit_1658946891645/work
 toolz @ file:///tmp/build/80754af9/toolz_1636545406491/work
 tornado @ file:///opt/concourse/worker/volumes/live/2c1a63a2-006b-48ee-56b9-0cfe8b4927f9/volume/tornado_1606942321278/work
-tqdm @ file:///private/var/folders/sy/f16zz6x50xz3113nwtb9bvq00000gp/T/abs_2adqcbsqqd/croots/recipe/tqdm_1664392689227/work
-traitlets @ file:///tmp/build/80754af9/traitlets_1636710298902/work
-Twisted @ file:///private/var/folders/sy/f16zz6x50xz3113nwtb9bvq00000gp/T/abs_daykstm3mh/croots/recipe/twisted_1659592770155/work
-typing_extensions @ file:///private/var/folders/sy/f16zz6x50xz3113nwtb9bvq00000gp/T/abs_ff5_5nqr6l/croots/recipe/typing_extensions_1659638832447/work
-tzdata==2022.6
-ujson @ file:///private/var/folders/sy/f16zz6x50xz3113nwtb9bvq00000gp/T/abs_cf44fbd5-5db0-48cf-86c4-c8d4e74d1cbbwhgckc99/croots/recipe/ujson_1657544919410/work
-Unidecode @ file:///tmp/build/80754af9/unidecode_1614712377438/work
-urllib3 @ file:///private/var/folders/sy/f16zz6x50xz3113nwtb9bvq00000gp/T/abs_53dwuk2xkk/croots/recipe/urllib3_1659110467968/work
-virtualenv==20.20.0
-w3lib @ file:///Users/ktietz/demo/mc3/conda-bld/w3lib_1629359764703/work
-watchdog @ file:///opt/concourse/worker/volumes/live/bc34f9ce-893b-443f-56fb-9256c33ecf2a/volume/watchdog_1638367303330/work
-wcwidth @ file:///Users/ktietz/demo/mc3/conda-bld/wcwidth_1629357192024/work
-webencodings==0.5.1
-websocket-client @ file:///opt/concourse/worker/volumes/live/5baed9cd-40fb-4fbe-6721-9568cdd0f2d7/volume/websocket-client_1614804245073/work
-Werkzeug @ file:///opt/conda/conda-bld/werkzeug_1645628268370/work
-whatthepatch @ file:///private/var/folders/sy/f16zz6x50xz3113nwtb9bvq00000gp/T/abs_0aabmq0ph3/croots/recipe/whatthepatch_1661795995892/work
-widgetsnbextension @ file:///opt/concourse/worker/volumes/live/8bad7157-f9ed-4ea5-5a30-5ca326558415/volume/widgetsnbextension_1645009368149/work
-wrapt @ file:///private/var/folders/sy/f16zz6x50xz3113nwtb9bvq00000gp/T/abs_1ade1f68-8354-4db8-830b-ff3072015779vd_2hm7k/croots/recipe/wrapt_1657814407132/work
-wurlitzer @ file:///opt/concourse/worker/volumes/live/a2b1dfd8-5830-41c1-6a08-9a84d13fec28/volume/wurlitzer_1638368180115/work
-xarray @ file:///opt/conda/conda-bld/xarray_1639166117697/work
-xlrd @ file:///tmp/build/80754af9/xlrd_1608072521494/work
-XlsxWriter @ file:///opt/conda/conda-bld/xlsxwriter_1649073856329/work
-xlwings @ file:///private/var/folders/sy/f16zz6x50xz3113nwtb9bvq00000gp/T/abs_05prpwd36w/croots/recipe/xlwings_1664932816578/work
-yapf @ file:///tmp/build/80754af9/yapf_1615749224965/work
-zict==2.1.0
-zipp @ file:///private/var/folders/sy/f16zz6x50xz3113nwtb9bvq00000gp/T/abs_b279673d-f037-44c7-8773-c5a6b6f51037d3wfr9cq/croots/recipe/zipp_1652341773612/work
-zope.interface @ file:///opt/concourse/worker/volumes/live/8c2d4bd1-6406-47f0-45ce-890992bafbf6/volume/zope.interface_1625036159007/work
