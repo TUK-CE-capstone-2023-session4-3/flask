@@ -7,7 +7,9 @@ RUN pip3 install flask
 
 COPY . .
 
-RUN pip install --no-cache-dir -r requirements.txt
+
+RUN pip install --no-cache-dir -r requirement.txt
+
 
 EXPOSE 8000
 
