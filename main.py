@@ -1,8 +1,9 @@
 from flask import Flask, render_template, Response
 from camera import VideoCamera
+from flask_ngrok import run_with_ngrok
 
 app = Flask(__name__)
-
+run_with_ngrok(app)
 @app.route('/')
 def index():
     return render_template('index.js')
@@ -19,4 +20,5 @@ def video_feed():
                     mimetype='multipart/x-mixed-replace; boundary=frame')
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000, threaded=True, use_reloader=False)
+    # app.run(host='0.0.0.0', port=5000, threaded=True, use_reloader=False)
+    app.run()
