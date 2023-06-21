@@ -10,8 +10,8 @@ import numpy as np
 import io
 import html
 import time
-import matplotlib.pyplot as plt
-%matplotlib inline
+# import matplotlib.pyplot as plt
+# %matplotlib inline
 
 
 app = Flask(__name__)
