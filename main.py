@@ -1,54 +1,20 @@
 from flask import Flask, render_template, Response
 from camera import VideoCamera
-from flask_ngrok import run_with_ngrok
 from IPython.display import display, Javascript, Image
 from google.colab.output import eval_js
-import html
+from google.colab.patches import cv2_imshow
 from base64 import b64decode, b64encode
 import cv2
 import numpy as np
-import PIL
+# import PIL
 import io
+import html
+import time
+import matplotlib.pyplot as plt
+%matplotlib inline
+
 
 app = Flask(__name__)
-run_with_ngrok(app) 
-@app.route('/')
-def index():
-    return render_template('index.js')
-    
-def gen(camera):
-    while True:
-        frame = camera.get_frame()
-        yield (b'--frame\r\n'
-            b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n\r\n')
-            
-@app.route('/video')
-def video_feed():
-    return Response(gen(VideoCamera()),
-                    mimetype='multipart/x-mixed-replace; boundary=frame')
-
-if __name__ == '__main__':
-    # app.run(host='0.0.0.0', port=5000, threaded=True, use_reloader=False)
-    app.run()
-
-
-
-
-
-
-
-def jsob_to_image(js_object):
-  # decode base64 image
-  image_bytes = b64decode(js_object.split(',')[1])
-  # convert bytes to numpy array
-  img_array = np.frombuffer(image_bytes, dtype=np.uint8)
-  # convert numpy array into OpenCV BGR 
-  frame = cv2.imdecode(img_array, flags=1)
-
-  return frame
-
-
-
 
 
 def video_stream():
@@ -103,6 +69,13 @@ def video_stream():
       div.style.maxWidth = '600px';
       document.body.appendChild(div);
       
+      const modelOut = document.createElement('div');
+      modelOut.innerHTML = "<span>Status:</span>";
+      labelElement = document.createElement('span');
+      labelElement.innerText = 'No data';
+      labelElement.style.fontWeight = 'bold';
+      modelOut.appendChild(labelElement);
+      div.appendChild(modelOut);
            
       video = document.createElement('video');
       video.style.display = 'block';
@@ -121,8 +94,8 @@ def video_stream():
       
       const instruction = document.createElement('div');
       instruction.innerHTML = 
-          '<span style="blue: red; font-weight: bold;">' +
-          'click here to stop the video</span>';
+          '<span style="color: red; font-weight: bold;">' +
+          'When finished, click here or on the video to stop this demo</span>';
       div.appendChild(instruction);
       instruction.onclick = () => { shutdown = true; };
       
@@ -130,13 +103,13 @@ def video_stream():
       await video.play();
 
       captureCanvas = document.createElement('canvas');
-      captureCanvas.width = 640; 
-      captureCanvas.height = 480; 
+      captureCanvas.width = 640; //video.videoWidth;
+      captureCanvas.height = 480; //video.videoHeight;
       window.requestAnimationFrame(onAnimationFrame);
       
       return stream;
     }
-    async function stream_frame() {
+    async function stream_frame(label, imgData) {
       if (shutdown) {
         removeDom();
         shutdown = false;
@@ -147,9 +120,18 @@ def video_stream():
       stream = await createDom();
       
       var preShow = Date.now();
-  
+      if (label != "") {
+        labelElement.innerHTML = label;
+      }
             
-
+      if (imgData != "") {
+        var videoRect = video.getClientRects()[0];
+        imgElement.style.top = videoRect.top + "px";
+        imgElement.style.left = videoRect.left + "px";
+        imgElement.style.width = videoRect.width + "px";
+        imgElement.style.height = videoRect.height + "px";
+        imgElement.src = imgData;
+      }
       
       var preCapture = Date.now();
       var result = await new Promise(function(resolve, reject) {
@@ -166,15 +148,26 @@ def video_stream():
 
   display(js)
   
-def video_frame():
-  data = eval_js('stream_frame()')
+def video_frame(label, bbox):
+  data = eval_js('stream_frame("{}", "{}")'.format(label, bbox))
   return data
 
-# Get the webcam stream and forward it to python 
-video_stream()
+def gen(camera):
+    while True:
+        # frame = camera.get_frame()
+        frame = video_stream()
+        yield (b'--frame\r\n'
+            b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n\r\n')
+            
+@app.route('/')
+def video_feed():
+    return Response(gen(VideoCamera()),
+                    mimetype='multipart/x-mixed-replace; boundary=frame')
 
-while True:
-    frame_js = video_frame()
-    if not frame_js:
-        break
-    img = jsob_to_image(frame_js["img"])
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=5000, threaded=True, use_reloader=False)
+
+
+
+
+# JavaScript to properly create our live video stream using our webcam as input
