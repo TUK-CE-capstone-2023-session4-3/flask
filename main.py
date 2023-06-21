@@ -6,16 +6,18 @@ from google.colab.patches import cv2_imshow
 from base64 import b64decode, b64encode
 import cv2
 import numpy as np
+from flask_ngrok import run_with_ngrok
 # import PIL
 import io
 import html
 import time
+
 # import matplotlib.pyplot as plt
 # %matplotlib inline
 
 
 app = Flask(__name__)
-
+run_with_ngrok(app)
 
 def video_stream():
   js = Javascript('''
@@ -165,8 +167,8 @@ def video_feed():
                     mimetype='multipart/x-mixed-replace; boundary=frame')
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000, threaded=True, use_reloader=False)
-
+    # app.run(host='0.0.0.0', port=5000, threaded=True, use_reloader=False)
+    app.run()
 
 
 
